@@ -1,4 +1,4 @@
 echo compiling...
-javac -cp junit4.10/junit-4.10.jar WordsTest.java Words.java
+javac -cp junit-4.10.jar WordsTest.java Words.java Wc.java
 echo running...
-java -cp ".;junit4.10/junit-4.10.jar" org.junit.runner.JUnitCore WordsTest
+java -cp ".;junit-4.10.jar" org.junit.runner.JUnitCore WordsTest

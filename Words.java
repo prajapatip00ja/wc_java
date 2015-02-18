@@ -27,4 +27,26 @@ public class Words {
 		chars = this.countOfChars();
 		return lines+" "+words+" "+chars;
 	}
+
+	public int associatedFunctions(String option){
+		switch (option) {
+			case "-w":
+				return this.countOfWords();
+			case "-l":
+				return this.countsOfLines();
+			case "-c":
+				return this.countOfChars();		
+			default :
+				return 0;
+		}
+	}
+
+	public String parseOptions(String[] options){
+		String counts = new String();
+		for (int i = 0; i < options.length; i++){
+			counts += associatedFunctions(options[i])+" ";
+		}
+		return counts;
+	}
+
 }

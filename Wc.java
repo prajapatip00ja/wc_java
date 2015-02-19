@@ -1,19 +1,21 @@
+//import java.util.*;
+
 import java.io.*;
 public class Wc {	
-	String input;
+	String[] input;
 	String file;
 	String options;
 
-	public Wc(String input){
+	public Wc(String[] input){
 		this.input = input;
 	}
 
 	public String giveFile(){
-		return this.input.split(" ")[0];
+		return this.input[0];
 	}
 
 	public String[] giveOptions(){
-		String[] arguments = this.input.split(" ");
+		String[] arguments = this.input;
 		String[] options = new String[arguments.length-1];
 		int count = 0;
 		for(int i =0; i<arguments.length; i++){
@@ -46,5 +48,13 @@ public class Wc {
 		String text = this.giveText();
 		Words word = new Words(text);
 		return word.parseOptions(options);
+	}
+
+	public static void main(String[] args) {
+		Wc wc = new Wc(args);
+		String texts = wc.giveText();
+		String[] options =  wc.giveOptions();
+		Words words = new Words(texts);
+		System.out.println(words.parseOptions(options)+" "+wc.giveFile());
 	}
 }

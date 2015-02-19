@@ -1,8 +1,6 @@
 import java.io.*;
 public class Wc {	
 	String[] input;
-	String file;
-	// String options;
 
 	public Wc(String[] input){
 		this.input = input;
@@ -31,6 +29,7 @@ public class Wc {
 	public char[] giveText(){
 		String file = this.giveFile();
 		Reader rd = new Reader(file);
+		char[] o = rd.readFile();
 		return rd.readFile();
 	}
 
@@ -49,4 +48,3 @@ public class Wc {
 		System.out.println(words.parseOptions(options)+" "+wc.giveFile());
 	}
 }
-git commit -m "created Reader class for reading file and handle the default option"

@@ -49,43 +49,44 @@ public class WordsTest {
 
     @Test
     public void giveFiles() {
-        Wc wc = new Wc("one.txt -l");
+        String[] args = {"one.txt" ,"-l"};
+        Wc wc = new Wc(args);
         assertEquals(wc.giveFile(),"one.txt");
     }
 
     @Test
-    public void giveTexts() {
-        Wc wc = new Wc("one.txt");
-        assertEquals(wc.giveText(),"pooja is a good girl.");
-    }
-
-    @Test
     public void giveOptions() {
-        Wc wc = new Wc("one.txt -l -w");
+        String[] args = {"one.txt" ,"-l","-w"};
+        Wc wc = new Wc(args);
         String[] options = {"-l","-w"};
         assertEquals(wc.giveOptions(),options);
     }
 
     @Test
     public void checkOutput() {
-        Wc wc = new Wc("one.txt -l -w");
-        assertEquals(wc.giveOutput(),"1 5 ");
+        String[] args = {"one.txt" ,"-l","-w"};
+        Wc wc = new Wc(args);
+        assertEquals(wc.giveOutput(),"2 7 ");
     }
 
     @Test
     public void checkOutput_01() {
-        Wc wc = new Wc("one.txt -l -c");
-        assertEquals(wc.giveOutput(),"1 21 ");
+        String[] args = {"one.txt" ,"-w","-c"};
+        Wc wc = new Wc(args);
+        assertEquals(wc.giveOutput(),"7 36 ");
     }
 
     @Test
     public void checkOutput_02() {
-        Wc wc = new Wc("one.txt -l -c -w");
-        assertEquals(wc.giveOutput(),"1 21 5 ");
+        String[] args = {"one.txt" ,"-c","-w"};
+        Wc wc = new Wc(args);
+        assertEquals(wc.giveOutput(),"36 7 ");
     }
-    
-    
 
-
-
+    @Test
+    public void checkOutput_03() {
+        String[] args = {"one.txt" ,"-c","-w","-l"};
+        Wc wc = new Wc(args);
+        assertEquals(wc.giveOutput(),"36 7 2 ");
+    }
 }    

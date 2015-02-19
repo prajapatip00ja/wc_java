@@ -6,7 +6,7 @@ public class Reader {
 	}
 
 	public char[] readFile(){
-		BufferedReader inputFile;
+		BufferedReader inputFile;	
 		File fr = new File(this.file);
 		int length = (int)fr.length();
 		char cbuf[] = new char[length];

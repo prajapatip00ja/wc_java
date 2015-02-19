@@ -20,6 +20,7 @@ public class Words {
 		return this.lines.split("").length;
 	}
 
+
 	public String giveWordCount(){
 		int lines,words,chars;
 		lines = this.countsOfLines();

@@ -1,10 +1,8 @@
-//import java.util.*;
-
 import java.io.*;
 public class Wc {	
 	String[] input;
 	String file;
-	String options;
+	// String options;
 
 	public Wc(String[] input){
 		this.input = input;
@@ -17,6 +15,7 @@ public class Wc {
 	public String[] giveOptions(){
 		String[] arguments = this.input;
 		String[] options = new String[arguments.length-1];
+		String[] defaultOption = {"-l","-w","-c"};
 		int count = 0;
 		for(int i =0; i<arguments.length; i++){
 				if(arguments[i].indexOf("-")==0){
@@ -24,37 +23,30 @@ public class Wc {
 				count++;
 			}
 		}
+		if(options.length==0)
+			return defaultOption;
 		return options;
 	}
 
-
-	public String giveText(){
-		BufferedReader inputFile;
-		String inputLine = new String();
+	public char[] giveText(){
 		String file = this.giveFile();
-		try{
-		    inputFile = new BufferedReader(new FileReader (file));
-	        inputLine = inputFile.readLine();
-	    }   
-        catch (IOException ioe){
-            System.out.println (ioe.getMessage());
-            ioe.printStackTrace ();
-        }
-        return inputLine;
+		Reader rd = new Reader(file);
+		return rd.readFile();
 	}
 
 	public String giveOutput(){
 		String[] options = this.giveOptions();
-		String text = this.giveText();
-		Words word = new Words(text);
+		String texts = new String(this.giveText());
+		Words word = new Words(texts);
 		return word.parseOptions(options);
 	}
 
 	public static void main(String[] args) {
 		Wc wc = new Wc(args);
-		String texts = wc.giveText();
-		String[] options =  wc.giveOptions();
+		String texts = new String(wc.giveText());
+		String[] options = wc.giveOptions();
 		Words words = new Words(texts);
 		System.out.println(words.parseOptions(options)+" "+wc.giveFile());
 	}
 }
+git commit -m "created Reader class for reading file and handle the default option"

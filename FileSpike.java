@@ -13,5 +13,6 @@ class FileSpike {
 		int length = (int)thisFile.length();
 		char cbuf[] = new char[1000];
 		br.read(cbuf,0,length);
+		System.out.println(cbuf);
 	}
 }

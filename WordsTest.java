@@ -28,12 +28,13 @@ public class WordsTest {
     	assertEquals(word.countsOfLines(),2);
     }
 
-    @Test
-    public void wordCounts() {
-    	Words word = new Words("pooja is a good girl\r\n dolly is not");
-    	assertEquals(word.giveWordCount(),"2 8 35");
+    @Test 
+    public void findMaxLine(){
+        Words word = new Words("pooja is a good girl\r\ndolly is not");
+        assertEquals(word.findMaxLen(),"20 pooja is a good girl");        
     }
 
+    
     @Test
     public void associatedFunctions() {
         Words word = new Words("pooja is a good girl\r\n dolly is not");
@@ -66,27 +67,27 @@ public class WordsTest {
     public void checkOutput() {
         String[] args = {"one.txt" ,"-l","-w"};
         Wc wc = new Wc(args);
-        assertEquals(wc.giveOutput(),"2 7 ");
+        assertEquals(wc.giveOutput(),"2 8 ");
     }
 
     @Test
     public void checkOutput_01() {
         String[] args = {"one.txt" ,"-w","-c"};
         Wc wc = new Wc(args);
-        assertEquals(wc.giveOutput(),"7 36 ");
+        assertEquals(wc.giveOutput(),"8 36 ");
     }
 
     @Test
     public void checkOutput_02() {
         String[] args = {"one.txt" ,"-c","-w"};
         Wc wc = new Wc(args);
-        assertEquals(wc.giveOutput(),"36 7 ");
+        assertEquals(wc.giveOutput(),"36 8 ");
     }
 
     @Test
     public void checkOutput_03() {
         String[] args = {"one.txt" ,"-c","-w","-l"};
         Wc wc = new Wc(args);
-        assertEquals(wc.giveOutput(),"36 7 2 ");
+        assertEquals(wc.giveOutput(),"36 8 2 ");
     }
 }    

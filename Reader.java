@@ -1,6 +1,7 @@
 import java.io.*;
 public class Reader {
 	String file;
+	
 	public Reader(String file){
 		this.file = file;
 	}

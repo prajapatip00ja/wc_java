@@ -1,33 +1,36 @@
 public class Words {
-	int count_lines;
-	int count_words;
-	int count_chars;
-	String lines;
+	private String texts;
 	
 	public Words(String lines_of_file){
-		this.lines = lines_of_file;
+		this.texts = lines_of_file;
 	}	
 
 	public int countsOfLines(){
-		return this.lines.split("\r\n").length;
+		return this.texts.split("\r\n").length;
 	}
 
 	public int countOfWords(){
-		return this.lines.split(" ").length;
+		return this.texts.split("\\W+").length;
 	}
 
 	public int countOfChars(){
-		return this.lines.split("").length;
+		return this.texts.split("").length;
+	}
+
+	public String findMaxLen(){
+		String[] lines = this.texts.split("\r\n");
+		int lenOf1Ln = lines[0].length();	
+		String firstLine = lines[0];
+		for(int i = 1 ; i<lines.length ; i++){
+			if(lines[i].length()>lenOf1Ln){
+				lenOf1Ln = lines[i].length();
+				firstLine = lines[i];
+			}
+		}
+		return(lenOf1Ln + " " + firstLine);
 	}
 
 
-	public String giveWordCount(){
-		int lines,words,chars;
-		lines = this.countsOfLines();
-		words = this.countOfWords();
-		chars = this.countOfChars();
-		return lines+" "+words+" "+chars;
-	}
 
 	public int associatedFunctions(String option){
 		switch (option) {

@@ -28,13 +28,38 @@ public class WordsTest {
     	assertEquals(word.countsOfLines(),2);
     }
 
-    @Test 
-    public void findMaxLine(){
+
+    @Test
+    public void iterateOverLines() {
         Words word = new Words("pooja is a good girl\r\ndolly is not");
-        assertEquals(word.findMaxLen(),"20 pooja is a good girl");        
+        String option = "-L";
+        assertEquals(word.findMaxOrSmlLen(option),"20 pooja is a good girl");
     }
 
-    
+    @Test
+    public void iterateOverLines_01() {
+        Words word = new Words("pooja is a good girl\r\ndolly is not");
+        String option = "-S";
+        assertEquals(word.findMaxOrSmlLen(option),"12 dolly is not");
+    }
+
+    @Test
+    public void testEvaluate() {
+        Words word = new Words("pooja is a good girl\r\ndolly is not");
+        int lenOfLn = 5,lenOf1Ln = 3;
+        String option = "-L";
+        assertEquals(word.evaluate(lenOfLn,lenOf1Ln,option),true);
+    }
+
+    @Test
+    public void testEvaluate_01() {
+        Words word = new Words("pooja is a good girl\r\ndolly is not");
+        int lenOfLn = 1,lenOf1Ln = 2;
+        String option = "-S";
+        assertEquals(word.evaluate(lenOfLn,lenOf1Ln,option),true);
+    }
+
+
     @Test
     public void associatedFunctions() {
         Words word = new Words("pooja is a good girl\r\n dolly is not");
@@ -90,4 +115,19 @@ public class WordsTest {
         Wc wc = new Wc(args);
         assertEquals(wc.giveOutput(),"36 8 2 ");
     }
+
+    @Test
+    public void checkOutput_04() {
+        String[] args = {"one.txt" ,"-L"};
+        Wc wc = new Wc(args);
+        assertEquals(wc.giveOutput(),"21 pooja is a good girl.");
+    }
+    
+    @Test
+    public void checkOutput_05() {
+        String[] args = {"one.txt" ,"-S"};
+        Wc wc = new Wc(args);
+        assertEquals(wc.giveOutput(),"13 dolly is not.");
+    }
+
 }    

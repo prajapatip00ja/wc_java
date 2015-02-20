@@ -17,20 +17,27 @@ public class Words {
 		return this.texts.split("").length;
 	}
 
-	public String findMaxLen(){
+	public boolean evaluate(int lenOfLn,int lenOf1Ln,String option){
+		if(option=="-L")
+			return lenOfLn>lenOf1Ln;
+		else if(option=="-S")
+			return lenOfLn<lenOf1Ln;
+		else
+			return false;
+	}
+
+	public String findMaxOrSmlLen(String option){
 		String[] lines = this.texts.split("\r\n");
-		int lenOf1Ln = lines[0].length();	
 		String firstLine = lines[0];
+		int lenOf1Ln = firstLine.length();
 		for(int i = 1 ; i<lines.length ; i++){
-			if(lines[i].length()>lenOf1Ln){
+			if(evaluate(lines[i].length(),lenOf1Ln,option)){
 				lenOf1Ln = lines[i].length();
 				firstLine = lines[i];
 			}
 		}
-		return(lenOf1Ln + " " + firstLine);
+		return (lenOf1Ln + " " + firstLine);
 	}
-
-
 
 	public int associatedFunctions(String option){
 		switch (option) {
@@ -39,8 +46,9 @@ public class Words {
 			case "-l":
 				return this.countsOfLines();
 			case "-c":
-				return this.countOfChars();		
-			default :
+				return this.countOfChars();	
+			
+			 default :
 				return 0;
 		}
 	}
@@ -48,6 +56,10 @@ public class Words {
 	public String parseOptions(String[] options){
 		String counts = new String();
 		for (int i = 0; i < options.length; i++){
+			if(options[i]=="-L" || options[i]=="-S"){
+				counts = findMaxOrSmlLen(options[i]);
+			}
+			else
 			counts += associatedFunctions(options[i])+" ";
 		}
 		return counts;
